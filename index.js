@@ -81,6 +81,7 @@ app.delete('/post/:id',(req,res)=>{
   const post = posts.find((a)=>a.id === parseInt(req.params.id));
   if(!post)return res.status(404).json({message:"no such file exist"});
   posts.splice(index, 1);
+  lastId = lastId-1;
   res.json({ message: "Post deleted" });
 })
 app.listen(port, () => {
