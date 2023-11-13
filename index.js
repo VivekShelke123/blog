@@ -68,7 +68,14 @@ app.post('posts',(req,res)=>{
 })
 
 //CHALLENGE 4: PATCH a post when you just want to update one parameter
-
+app.patch('/posts/:id',(req,res)=>{
+  const post = posts.find((a)=>a.id === parseInt(req.params.id));
+  if(!post)return res.status(404).json({message:"no such file exist"});
+  if (req.body.title) post.title = req.body.title;
+  if (req.body.content) post.content = req.body.content;
+  if (req.body.author) post.author = req.body.author;
+  res.json(post);
+})
 //CHALLENGE 5: DELETE a specific post by providing the post id.
 
 app.listen(port, () => {
