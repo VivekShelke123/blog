@@ -77,7 +77,12 @@ app.patch('/posts/:id',(req,res)=>{
   res.json(post);
 })
 //CHALLENGE 5: DELETE a specific post by providing the post id.
-
+app.delete('/post/:id',(req,res)=>{
+  const post = posts.find((a)=>a.id === parseInt(req.params.id));
+  if(!post)return res.status(404).json({message:"no such file exist"});
+  posts.splice(index, 1);
+  res.json({ message: "Post deleted" });
+})
 app.listen(port, () => {
   console.log(`API is running at http://localhost:${port}`);
 });
